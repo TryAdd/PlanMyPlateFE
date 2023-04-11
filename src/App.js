@@ -1,25 +1,90 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState , useEffect} from 'react';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
+import Signin from './user/Signin';
+import Signup from './user/Signup';
+import Axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+    const [isAuth, setIsAuth] = useState({})
+    const [user, setUser] = useState({})
+    
+    useEffect(()=>{
+        let token = localStorage.getItem("token")
+        if(token != null){
+          let user = jwt_decode(token)
+    
+          if(user){
+            setIsAuth(true)
+            setUser(user)
+          }
+          else if(!user){
+            localStorage.removeItem("token")
+            setIsAuth(false)
+          }
+        }
+      }, [])  
+    const registerHandler = (user) =>{
+        Axios.post("auth/signup", user)
+        .then(res =>{
+         console.log(res)
+        })
+        .catch(err =>
+         console.log(err)
+         )
+     }
+
+     const logInHandler = (cred) => {
+        Axios.post("auth/signin", cred)
+        .then(res =>{
+          //? save the token in local storage
+          let token = res.data.token
+          if(token != null){
+            localStorage.setItem("token", token)
+            let user = jwt_decode(token)
+      
+            setIsAuth(true)
+            setUser(user)
+          } 
+        })
+      
+        .catch(err =>{
+          console.log(err)
+          setIsAuth(false)
+        })
+      }
+
+      const onLogOutHandler = (e) =>{
+        e.preventDefualt();
+        setIsAuth(false)
+        setUser(null)
+      }
+    
+
+  return(
+    <div>
+    <Router>
+      <div>
+        <nav>
+          <div>
+            <Link to="/">Home</Link> &nbsp;
+            <Link to="/signup">Signup</Link> &nbsp;
+            <Link to="/signin">Signin</Link> &nbsp;
+            <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
+          </div>
+        </nav>
+      </div>
+      <div>
+        <Routes>
+            <Route path="/" element={
+                <Signin login={logInHandler}></Signin>}>
+            </Route>
+            <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
+            <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
+        </Routes>
+      </div>
+    </Router>
+</div>
+  )
 }
-
-export default App;
