@@ -1,28 +1,15 @@
 
-import React, { useState , useEffect} from 'react'
-import RecipeList from './recipe/RecipeList'
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
-import  Axios from 'axios'
-
-
-
-export default function App() {
-  return (
-    <>
-     <RecipeList/> 
-    </>
-  )
-}
-
 import React, { useState , useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import Signin from './user/Signin';
 import Signup from './user/Signup';
 import Axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import RecipeList from './recipe/RecipeList'
 
 
 export default function App() {
+    
     const [isAuth, setIsAuth] = useState({})
     const [user, setUser] = useState({})
     
@@ -80,28 +67,33 @@ export default function App() {
 
   return(
     <div>
-    <Router>
-      <div>
-        <nav>
-          <div>
-            <Link to="/">Home</Link> &nbsp;
-            <Link to="/signup">Signup</Link> &nbsp;
-            <Link to="/signin">Signin</Link> &nbsp;
-            <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
-          </div>
-        </nav>
-      </div>
-      <div>
-        <Routes>
-            <Route path="/" element={
-                <Signin login={logInHandler}></Signin>}>
-            </Route>
-            <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
-            <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
-        </Routes>
-      </div>
-    </Router>
-</div>
+        <Router>
+        <div>
+            <nav>
+            <div>
+                <Link to="/">Home</Link> &nbsp;
+                <Link to="/signup">Signup</Link> &nbsp;
+                <Link to="/signin">Signin</Link> &nbsp;
+                <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
+            </div>
+            </nav>
+        </div>
+        <div>
+            <Routes>
+                <Route path="/" element={
+                    <Signin login={logInHandler}></Signin>}>
+                </Route>
+                <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
+                <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
+            </Routes>
+        </div>
+        </Router>
+            <>
+             <RecipeList/> 
+            </>
+    </div>
+
+  
   )
 }
 
