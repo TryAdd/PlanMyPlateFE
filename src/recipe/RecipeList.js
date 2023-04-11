@@ -3,7 +3,9 @@ import Axios from 'axios';
 import Recipe from './Recipe'
 import RecipeEditForm from './RecipeEditForm';
 import RecipeCreateForm from './RecipeCreateForm';
+import RecipeDetails from './RecipeDetails';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
+import { Navigate } from "react-router-dom";
 
 
 export default function RecipeList() {
@@ -51,6 +53,24 @@ export default function RecipeList() {
         .catch(err => {
             console.log("Error retreiving Recipe")
             console.log(err)
+        })
+    }
+
+      //Details recipe 
+      const detailRecipe = (id) => {
+        Axios.get(`recipe/detail?id=${id}`, 
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
+        .then(res => {
+            console.log(res.data.recipe)
+            let recipe = res.data.recipe
+            console.log("Loaded recipe Information")
+            setCurrentRecipe(recipe)
+            // Navigation with recipe id
+
         })
     }
 
@@ -115,7 +135,7 @@ export default function RecipeList() {
 
      const allRecipes = recipes.map((recipe,index)=>(
         <tr key={index}>
-            <Recipe {...recipe} editView={editView} deleteRecipe={deleteRecipe} />
+            <Recipe {...recipe} editView={editView} deleteRecipe={deleteRecipe} detailRecipe={detailRecipe}  />
 
 
         </tr>
@@ -124,11 +144,7 @@ export default function RecipeList() {
     <div>
         <Router>
             <div>
-            <nav>
-            <Link to="/index">Home</Link> &nbsp;
-            <Link to="/add">Add Recipe </Link> &nbsp;
-            <Link to='/edit'>Edit Recipe</Link> &nbsp;
-            </nav>  
+              
             </div>
             <div>
                 <Routes>
@@ -195,9 +211,14 @@ export default function RecipeList() {
                     }>
 
                     </Route>
+                    <Route path="RecipeDetails" element={<RecipeDetails/>} />
+                    
                 </Routes>
+                
             </div>
+            
         </Router>
+        
     </div>
     
   )
