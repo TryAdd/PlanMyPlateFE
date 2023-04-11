@@ -6,6 +6,7 @@ import Signup from './user/Signup';
 import Axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import RecipeList from './recipe/RecipeList'
+import RecipeDetail from './recipe/RecipeDetails';
 
 
 export default function App() {
@@ -75,22 +76,26 @@ export default function App() {
                 <Link to="/signup">Signup</Link> &nbsp;
                 <Link to="/signin">Signin</Link> &nbsp;
                 <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
+                <Link to="/index">recipeList</Link> &nbsp;
+                <Link to="/add">Add Recipe </Link> &nbsp;
+                <Link to='/edit'>Edit Recipe</Link> &nbsp;
             </div>
             </nav>
         </div>
         <div>
+
             <Routes>
                 <Route path="/" element={
                     <Signin login={logInHandler}></Signin>}>
                 </Route>
                 <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
                 <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
+                <Route path={`/recipe/:id`} element={<RecipeDetail/>}/>
             </Routes>
         </div>
         </Router>
-            <>
-             <RecipeList/> 
-            </>
+      
+        <RecipeList/> 
     </div>
 
   
