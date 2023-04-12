@@ -41,7 +41,7 @@ export default function App() {
          console.log(err)
          )
      }
-
+     const navigation = useNavigate()
      const logInHandler = (cred) => {
         console.log(cred)
         Axios.post("auth/signin", cred)
@@ -52,7 +52,8 @@ export default function App() {
           if(token != null){
             localStorage.setItem("token", token)
             let user = jwt_decode(token)
-      
+            
+            navigation('/index')
             setIsAuth(true)
             setUser(user)
           } 
@@ -63,14 +64,31 @@ export default function App() {
           setIsAuth(false)
         })
       }
-
+      const navigates = useNavigate()
       const onLogOutHandler = (e) =>{
         e.preventDefault();
         localStorage.removeItem("token")
         setIsAuth(false)
         setUser(null)
+        navigates('/signin')
       }
     
+const navbar = isAuth ?(
+
+  <>
+  <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
+                <Link to="/index">recipeList</Link> &nbsp;
+                <Link to="/add">Add Recipe </Link> &nbsp;
+                <Link to='/edit'>Edit Recipe</Link> &nbsp;
+  </>
+)
+:
+(
+  <>
+        <Link to="/signup">Signup</Link> &nbsp;
+        <Link to="/signin">Signin</Link> &nbsp;
+  </>
+)
 
   return(
     <div>
@@ -78,12 +96,8 @@ export default function App() {
         <div>
             <nav>
             <div>
-                <Link to="/signup">Signup</Link> &nbsp;
-                <Link to="/signin">Signin</Link> &nbsp;
-                <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
-                <Link to="/index">recipeList</Link> &nbsp;
-                <Link to="/add">Add Recipe </Link> &nbsp;
-                <Link to='/edit'>Edit Recipe</Link> &nbsp;
+          
+                {navbar}
             </div>
             </nav>
         </div>
@@ -98,6 +112,7 @@ export default function App() {
                 <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
                 <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
                 <Route path={`/recipe/:id`} element={<RecipeDetail/>}/>
+                <Route path={"/index"} element={<RecipeList/>}></Route>
                 
             </Routes>
         </div>

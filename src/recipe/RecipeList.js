@@ -24,7 +24,12 @@ export default function RecipeList() {
     const loadRecipeList = () => {
 
     
-        Axios.get('recipe/index')
+        Axios.get('recipe/index', 
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
         .then((response)=>{
             console.log(response)
             setRecipes(response.data.recipes)
@@ -38,6 +43,7 @@ export default function RecipeList() {
 
     // Add Recipe
     const addRecipe = (recipe) => {
+       
         Axios.post("recipe/add", recipe, 
         {
             headers: {
@@ -142,7 +148,7 @@ export default function RecipeList() {
     ))
   return (
     <div>
-        {/* <Router> */}
+      
             <div>
               
             </div>
@@ -216,10 +222,10 @@ export default function RecipeList() {
                 </Routes>
                 
             </div>
-        {/* </Router> */}
+            
+      
         
     </div>
     
   )
 }
-
