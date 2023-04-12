@@ -78,7 +78,6 @@ export default function App() {
         <div>
             <nav>
             <div>
-                <Link to="/">Home</Link> &nbsp;
                 <Link to="/signup">Signup</Link> &nbsp;
                 <Link to="/signin">Signin</Link> &nbsp;
                 <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
