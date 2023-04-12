@@ -118,9 +118,7 @@ const navbar = isAuth ?(
         {/* </Router> */}
       
         <RecipeList/> 
-        <CalendarPage/>
-        <UploadImage/>
-        <Image/>
+        
         
     </div>
   )
