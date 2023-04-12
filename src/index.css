@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* body{
+  background-color: white;
+}
+
+.container_up{
+  position: relative;
+  text-align: center;
+  top: 50%;
+}
+
+.lable{
+  font-weight: bolder;
+  
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.container{
+  padding: 4px;
+}
+
+.div{
+  background: #D1EAD1;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  width: 80%;
+  top: 700px;
+} */
+
+#square{
+  margin: 10px;
+}
+
+#space{
+  margin: 3px;
+}

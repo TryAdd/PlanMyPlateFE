@@ -5,8 +5,7 @@ import RecipeEditForm from './RecipeEditForm';
 import RecipeCreateForm from './RecipeCreateForm';
 import RecipeDetails from './RecipeDetails';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function RecipeList() {
@@ -26,7 +25,12 @@ export default function RecipeList() {
     const loadRecipeList = () => {
 
     
-        Axios.get('recipe/index')
+        Axios.get('recipe/index', 
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
         .then((response)=>{
             console.log(response)
             setRecipes(response.data.recipes)
@@ -38,8 +42,11 @@ export default function RecipeList() {
         })
     }
 
+    // for navigate when successfully added recipe to list
+    const navigate = useNavigate()
     // Add Recipe
     const addRecipe = (recipe) => {
+       
        
         Axios.post("recipe/add", recipe, 
         {
@@ -52,7 +59,8 @@ export default function RecipeList() {
             setCurrentID(res.data._id)
             console.log(currentID);
             console.log('Recipe Added successfully !!')
-            // loadRecipeList();
+            navigate('/index')
+            loadRecipeList();
         })
 
         .catch(err => {
@@ -153,7 +161,6 @@ export default function RecipeList() {
 
   return (
     <div>
-        <Router>
             <div>
               
             </div>
@@ -228,10 +235,9 @@ export default function RecipeList() {
                 
             </div>
             
-        </Router>
+      
         
     </div>
     
   )
 }
-

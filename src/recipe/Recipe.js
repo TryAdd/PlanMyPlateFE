@@ -11,11 +11,13 @@ export default function Recipe(props) {
     
     <>
     
-    <td>{props.name}</td>
+   
+    <td class="list-group-item disabled" aria-disabled="true">{props.name}</td>
+
     <img src={props.imageUrl} alt="img"/>   
-    <td><button onClick={() => {props.editView(props._id)}}>Edit</button></td>
-    <td><button onClick={() => {props.deleteRecipe(props._id)}}>Delete</button></td>
-    <button onClick={() => navigate(`/recipe/${props._id}`)}>View Details</button>
+    <td><button onClick={() => {props.editView(props._id)}} class="btn btn-outline-warning" id='space'>Edit</button></td>
+    <td><button onClick={() => navigate(`/recipe/${props._id}`)} class="btn btn-outline-info" id='space'>View Details</button></td>
+    <td><button onClick={() => {props.deleteRecipe(props._id)}}class="btn btn-outline-danger" id='space'>Delete</button></td>
     
 
     </>

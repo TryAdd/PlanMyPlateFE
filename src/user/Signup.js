@@ -17,24 +17,26 @@ export default function Signup(props) {
 
   return (
     <div>
-        <h1>Sign Up</h1>
+        <h1 id=''>Sign Up</h1>
+        <div className='div'>
+            <Container className='container_up'>
+                <Form.Group className='container'>
+                    <Form.Label><span className='lable'>UserName</span></Form.Label>
+                    <Form.Control name='UserName' onChange={ChangeHandler}/>
+                </Form.Group>
+                <Form.Group className='container'>
+                    <Form.Label><span className='lable'>Email Address</span></Form.Label>
+                    <Form.Control name='emailAddress' type='emailAddress' onChange={ChangeHandler}/>
+                </Form.Group>
+                <Form.Group className='container'>
+                    <Form.Label><span className='lable'>Password</span></Form.Label>
+                    <Form.Control name='password' type='password' onChange={ChangeHandler}/>
+                </Form.Group>
 
-        <Container>
-            <Form.Group>
-                <Form.Label>UserName</Form.Label>
-                <Form.Control name='UserName' onChange={ChangeHandler}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control name='emailAddress' type='emailAddress' onChange={ChangeHandler}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control name='password' type='password' onChange={ChangeHandler}/>
-            </Form.Group>
-
-            <Button variant='primary' onClick={registerHandler}> Register </Button>
-        </Container>
+                <Button variant="outline-info" id="square" onClick={registerHandler}> Register </Button>
+            </Container>
+       
+        </div>
     </div>
   )
 }
