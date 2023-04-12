@@ -5,7 +5,7 @@ import RecipeEditForm from './RecipeEditForm';
 import RecipeCreateForm from './RecipeCreateForm';
 import RecipeDetails from './RecipeDetails';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function RecipeList() {
@@ -41,6 +41,8 @@ export default function RecipeList() {
         })
     }
 
+    // for navigate when successfully added recipe to list
+    const navigate = useNavigate()
     // Add Recipe
     const addRecipe = (recipe) => {
        
@@ -53,6 +55,7 @@ export default function RecipeList() {
         )
         .then(res =>{
             console.log('Recipe Added successfully !!')
+            navigate('/index')
             loadRecipeList();
         })
 
