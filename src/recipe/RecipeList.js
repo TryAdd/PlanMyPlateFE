@@ -142,7 +142,6 @@ export default function RecipeList() {
     ))
   return (
     <div>
-        <Router>
             <div>
               
             </div>
@@ -216,8 +215,6 @@ export default function RecipeList() {
                 </Routes>
                 
             </div>
-            
-        </Router>
         
     </div>
     

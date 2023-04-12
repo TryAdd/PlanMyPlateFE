@@ -1,6 +1,7 @@
-
 import React, { useState , useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
+import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Signin from './user/Signin';
 import Signup from './user/Signup';
 import Axios from 'axios'
@@ -29,10 +30,12 @@ export default function App() {
           }
         }
       }, [])  
+      const navigate = useNavigate()
     const registerHandler = (user) =>{
         Axios.post("auth/signup", user)
         .then(res =>{
          console.log(res)
+         navigate('/signin')
         })
         .catch(err =>
          console.log(err)
@@ -40,8 +43,10 @@ export default function App() {
      }
 
      const logInHandler = (cred) => {
+        console.log(cred)
         Axios.post("auth/signin", cred)
         .then(res =>{
+            console.log(res.data.token)
           //? save the token in local storage
           let token = res.data.token
           if(token != null){
@@ -60,7 +65,8 @@ export default function App() {
       }
 
       const onLogOutHandler = (e) =>{
-        e.preventDefualt();
+        e.preventDefault();
+        localStorage.removeItem("token")
         setIsAuth(false)
         setUser(null)
       }
@@ -68,7 +74,7 @@ export default function App() {
 
   return(
     <div>
-        <Router>
+        {/* <Router> */}
         <div>
             <nav>
             <div>
@@ -86,19 +92,20 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={
+                    isAuth? <RecipeList/>
+                    :
                     <Signin login={logInHandler}></Signin>}>
                 </Route>
                 <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
                 <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
                 <Route path={`/recipe/:id`} element={<RecipeDetail/>}/>
+                
             </Routes>
         </div>
-        </Router>
+        {/* </Router> */}
       
         <RecipeList/> 
     </div>
-
-  
   )
 }
 
