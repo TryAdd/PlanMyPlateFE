@@ -9,6 +9,9 @@ import RecipeList from './recipe/RecipeList'
 import RecipeDetail from './recipe/RecipeDetails';
 import Calendar from 'react-calendar';
 import CalendarPage from './calendar/CalendarPage';
+import UploadImage from './upload/UploadImage';
+import Image from './upload/Image';
+
 
 
 export default function App() {
@@ -99,6 +102,9 @@ export default function App() {
       
         <RecipeList/> 
         <CalendarPage/>
+        <UploadImage/>
+        <Image/>
+        
     </div>
 
   

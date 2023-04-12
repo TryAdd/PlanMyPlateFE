@@ -8,10 +8,12 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 import { Navigate } from "react-router-dom";
 
 
+
 export default function RecipeList() {
     const[recipes,setRecipes]= useState([])
     const [isEdit, setIsEdit] = useState(false);
     const [currentRecipe,setCurrentRecipe]= useState("");
+    const[currentID,setCurrentID]=useState('')
 
     useEffect(()=>{
         loadRecipeList()
@@ -38,6 +40,7 @@ export default function RecipeList() {
 
     // Add Recipe
     const addRecipe = (recipe) => {
+       
         Axios.post("recipe/add", recipe, 
         {
             headers: {
@@ -46,8 +49,10 @@ export default function RecipeList() {
         }
         )
         .then(res =>{
+            setCurrentID(res.data._id)
+            console.log(currentID);
             console.log('Recipe Added successfully !!')
-            loadRecipeList();
+            // loadRecipeList();
         })
 
         .catch(err => {
@@ -140,6 +145,12 @@ export default function RecipeList() {
 
         </tr>
     ))
+
+
+    // upload image : 
+    
+
+
   return (
     <div>
         <Router>
@@ -171,7 +182,7 @@ export default function RecipeList() {
                     <Route path='/add' element={
                         <div>
                         
-                            <RecipeCreateForm addRecipe={addRecipe}/>
+                            <RecipeCreateForm currentID={currentID}addRecipe={addRecipe}/>
                            
                        </div>
                         
