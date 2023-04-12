@@ -8,6 +8,7 @@ import Axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import RecipeList from './recipe/RecipeList'
 import RecipeDetail from './recipe/RecipeDetails';
+import Search from './Search';
 
 
 export default function App() {
@@ -72,7 +73,7 @@ export default function App() {
         setUser(null)
         navigates('/signin')
       }
-    
+   
 const navbar = isAuth ?(
 
   <>
@@ -96,7 +97,6 @@ const navbar = isAuth ?(
         <div>
             <nav>
             <div>
-          
                 {navbar}
             </div>
             </nav>
@@ -113,7 +113,6 @@ const navbar = isAuth ?(
                 <Route path="/signin" element={<Signin login={logInHandler}/>}></Route>
                 <Route path={`/recipe/:id`} element={<RecipeDetail/>}/>
                 <Route path={"/index"} element={<RecipeList/>}></Route>
-                
             </Routes>
         </div>
         {/* </Router> */}
