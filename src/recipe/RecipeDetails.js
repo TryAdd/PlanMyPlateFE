@@ -41,6 +41,7 @@ export default function RecipeDetails(props) {
       <h1>Recipe Name</h1>
       <h2>{recipe.name}</h2>
       <h3>Ingredients:</h3>
+      <img src={recipe.imageUrl} alt="img"/> 
       <ul>
         {recipe.ingredients &&
           recipe.ingredients.map((ingredient, index) => (
