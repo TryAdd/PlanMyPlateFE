@@ -7,6 +7,8 @@ import Axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import RecipeList from './recipe/RecipeList'
 import RecipeDetail from './recipe/RecipeDetails';
+import Calendar from 'react-calendar';
+import CalendarPage from './calendar/CalendarPage';
 
 
 export default function App() {
@@ -96,6 +98,7 @@ export default function App() {
         </Router>
       
         <RecipeList/> 
+        <CalendarPage/>
     </div>
 
   
