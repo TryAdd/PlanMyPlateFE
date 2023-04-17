@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Container, Form, Button } from 'react-bootstrap'
 
 
 export default function RecipeCreateForm(props) {
@@ -106,22 +107,22 @@ export default function RecipeCreateForm(props) {
   };
 
   return (
-    <div>
-      <h1>Create Recipe</h1>
+    <div className='container_sup2'>
+      <h1 id='Title'>Create Recipe</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
+        <div className='container'>
+          <label> <span className='lable'>Name</span></label>
           <input type="text" name="name" onChange={handleChange} value={newRecipe.name} />
         </div>
 
-        <div>
-          <label>Ingredients</label>
+        <div className='container'>
+          <label> <span className='lable'>Ingredients</span></label>
           <ul>
             {newRecipe.ingredients.map((ingredient, index) => (
               <li key={index}>
                 <input type="text" value={ingredient} onChange={(event) => handleIngredientChange(event, index)} />
-                <button type="button" onClick={() => handleRemoveIngredient(index)}>
-                  Remove
+                <button type="button" onClick={() => handleRemoveIngredient(index)} >
+                <span className='lable'>Remove</span>
                 </button>
               </li>
             ))}
@@ -131,13 +132,13 @@ export default function RecipeCreateForm(props) {
           </button>
         </div>
 
-        <div>
-          <label>Step</label>
+        <div className='container'>
+          <label> <span className='lable'>Step</span></label>
           <input type="text" name="step" onChange={handleChange} value={newRecipe.step} />
         
         </div>
         <div className="App">
-      <h1>Image Uploader</h1>
+      <h1> <span className='lable'>Upload Recipe image</span></h1>
       
         <label htmlFor="file" className="btn-grey">
           {" "}
@@ -155,14 +156,14 @@ export default function RecipeCreateForm(props) {
 
         {fileSelected && (
           <>
-            <button onClick={handleUpload} className="btn-green">
+            <button onClick={handleUpload} className="btn-green" variant="dark" id="square" >
               {loading ? "uploading..." : "upload to cloudinary and MongoDB"}
             </button>
           </>
         )}
-    </div>
+    </div >
 
-     <input type="submit" value="Add Recipe" />
+     <input type="submit" value="Add Recipe"  />
       </form>
 
      

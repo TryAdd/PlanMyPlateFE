@@ -12,7 +12,6 @@ export default function RecipeList() {
     const[recipes,setRecipes]= useState([])
     const [isEdit, setIsEdit] = useState(false);
     const [currentRecipe,setCurrentRecipe]= useState("");
-    const[currentID,setCurrentID]=useState('')
 
     useEffect(()=>{
         loadRecipeList()
@@ -42,11 +41,10 @@ export default function RecipeList() {
         })
     }
 
-    // for navigate when successfully added recipe to list
-    const navigate = useNavigate()
+    // for navigate when successfully added recipe 
+    // const navigate = useNavigate()
     // Add Recipe
     const addRecipe = (recipe) => {
-       
        
         Axios.post("recipe/add", recipe, 
         {
@@ -56,10 +54,8 @@ export default function RecipeList() {
         }
         )
         .then(res =>{
-            setCurrentID(res.data._id)
-            console.log(currentID);
             console.log('Recipe Added successfully !!')
-            navigate('/index')
+            // navigate('/index')
             loadRecipeList();
         })
 
@@ -88,6 +84,7 @@ export default function RecipeList() {
     }
 
     //Edit recipe 
+    const navigate2 = useNavigate()
     const editView = (id) => {
         Axios.get(`recipe/edit?id=${id}`, 
         {
@@ -103,7 +100,7 @@ export default function RecipeList() {
             setCurrentRecipe(recipe)
         })
     }
-
+    const navigate = window.location.reload
     const editRecipe = (recipe) => {
         Axios.put("recipe/update" , recipe , 
         {
@@ -115,6 +112,7 @@ export default function RecipeList() {
             console.log("Recipe Updated Successfully!!")
             console.log(res);
             loadRecipeList();
+            navigate()
         })
         .catch(err=> {
             console.log("Error Editing recipe")
@@ -147,20 +145,15 @@ export default function RecipeList() {
      // console.log(recipes)
 
      const allRecipes = recipes.map((recipe,index)=>(
-        <tr key={index}>
+        <span key={index}>
             <Recipe {...recipe} editView={editView} deleteRecipe={deleteRecipe} detailRecipe={detailRecipe}  />
 
 
-        </tr>
+        </span>
     ))
-
-
-    // upload image : 
-    
-
-
   return (
     <div>
+      
             <div>
               
             </div>
@@ -173,15 +166,19 @@ export default function RecipeList() {
                          <table>
                              <tbody>
                                  <tr>
-                                  <th> name</th>
-                                  <th>ingredient</th>
-                                  <th>step</th>
+                                  
                                  </tr>
                                 {allRecipes}
                              </tbody>
                          </table>
                        </div>
-                      
+                       {(isEdit) ?
+             
+             <RecipeEditForm key={currentRecipe._id} recipe = {currentRecipe}
+               editRecipe={editRecipe}  />
+                 :
+             <></>
+                            }
                        
                      </div>
 
@@ -189,7 +186,7 @@ export default function RecipeList() {
                     <Route path='/add' element={
                         <div>
                         
-                            <RecipeCreateForm currentID={currentID}addRecipe={addRecipe}/>
+                            <RecipeCreateForm addRecipe={addRecipe}/>
                            
                        </div>
                         

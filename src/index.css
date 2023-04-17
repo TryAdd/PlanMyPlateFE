@@ -47,3 +47,96 @@ code {
 #space{
   margin: 3px;
 }
+
+body{
+  background-image: url('https://i.ibb.co/5MT4jgW/blob-scene-haikei.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* https://i.ibb.co/hVfgdLt/blob-scene-haikei-2.png */
+
+/* https://i.ibb.co/d7ggDRG/Screenshot-2023-04-12-at-10-28-46-PM.png */
+
+/* https://i.ibb.co/5MT4jgW/blob-scene-haikei.png  */
+.card-img-top{
+  width: 18rem;
+}
+
+.card{
+  grid-row: 2px;
+  float: left;
+  margin: 30px;
+
+}
+
+.container_sup{
+  background: rgba(109, 144, 181);
+  box-shadow: inset 0px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 800px;
+  margin: 10% 25%;
+  flex: auto;
+}
+.container_sup2{
+  background: rgba(109, 144, 181);
+  box-shadow: inset 0px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 800px;
+  margin: 10% 25%;
+  flex: auto;
+  padding: 30px;
+}
+
+.inside{
+  padding: 80px;
+}
+
+#Title{
+  text-align: center;
+ padding-bottom: 30px;
+}
+
+.lable{
+  font-weight: bolder;
+}
+
+#square{
+  position: relative;
+  right: -240px;
+  top: 30px;
+}
+
+#space{
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#nav{
+  background: rgba(209, 234, 209, 0.5);
+}
+
+#elem{
+  color: black;
+  text-decoration: none;
+  padding: 15px 20px;
+  position: relative;
+  font-weight: bolder;
+}
+
+#elem:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  background-color: #D1EAD1;
+  transition: all 0.3s ease;
+}
+/* #D1EAD1; */
+#elem:hover:before {
+  left: 0;
+  width: 80%;
+
+}

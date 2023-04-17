@@ -16,20 +16,24 @@ export default function Signin(props) {
 
   return (
     <div>
-        <h1>Sign In</h1>
+         <div className='container_sup'>
+        <div className='inside'>
+        <h1 id='Title'>Sign In</h1>
 
-        <Container>
-            <Form.Group>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control name='emailAddress' type='emailAddress' onChange={ChangeHandler}/>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control name='password' type='password' onChange={ChangeHandler}/>
-            </Form.Group>
+            <Container>
+                <Form.Group>
+                    <Form.Label ><span className='lable'>Email Address</span></Form.Label>
+                    <Form.Control name='emailAddress' type='emailAddress' onChange={ChangeHandler}/>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label> <span className='lable'>Password</span></Form.Label>
+                    <Form.Control name='password' type='password' onChange={ChangeHandler}/>
+                </Form.Group>
 
-            <Button variant="outline-info" id="square" onClick={logInHandler}> Log In </Button>
-        </Container>
+                <Button variant="dark" id="square" onClick={logInHandler}> Log In </Button>
+            </Container>
+        </div>
+        </div>
     </div>
   )
 }

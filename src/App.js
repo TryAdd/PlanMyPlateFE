@@ -78,16 +78,18 @@ const navbar = isAuth ?(
 
   <>
   <Link to="/logout" onClick={onLogOutHandler}>Logout?</Link> &nbsp;
-                <Link to="/index">recipeList</Link> &nbsp;
-                <Link to="/add">Add Recipe </Link> &nbsp;
-                <Link to='/edit'>Edit Recipe</Link> &nbsp;
+                <Link to="/index" id='elem'>recipeList</Link> &nbsp;
+                <Link to="/add" id='elem'>Add Recipe </Link> &nbsp;
+                <Link to='/edit' id='elem'>Edit Recipe</Link> &nbsp;
   </>
 )
 :
 (
   <>
-        <Link to="/signup">Signup</Link> &nbsp;
-        <Link to="/signin">Signin</Link> &nbsp;
+        <Link to="/signup" id='elem'>Signup</Link> &nbsp;
+        <Link to="/signin" id='elem'>Signin</Link> &nbsp;
+        <Link to="/index" id='elem'>recipeList</Link> &nbsp;
+
   </>
 )
 
@@ -95,7 +97,7 @@ const navbar = isAuth ?(
     <div>
         {/* <Router> */}
         <div>
-            <nav>
+            <nav className='navbar navbar-expand-lg bg-body-tertiary' id='nav'>
             <div>
                 {navbar}
             </div>

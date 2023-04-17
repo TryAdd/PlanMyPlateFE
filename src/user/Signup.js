@@ -16,8 +16,9 @@ export default function Signup(props) {
     }
 
   return (
-    <div>
-        <h1 id=''>Sign Up</h1>
+    <div className='container_sup'>
+        <div className='inside'>
+        <h1 id='Title'>Sign Up</h1>
         <div className='div'>
             <Container className='container_up'>
                 <Form.Group className='container'>
@@ -33,9 +34,9 @@ export default function Signup(props) {
                     <Form.Control name='password' type='password' onChange={ChangeHandler}/>
                 </Form.Group>
 
-                <Button variant="outline-info" id="square" onClick={registerHandler}> Register </Button>
+                <Button variant="dark" id="square" onClick={registerHandler}> Register </Button>
             </Container>
-       
+        </div>
         </div>
     </div>
   )

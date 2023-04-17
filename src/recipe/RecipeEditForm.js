@@ -41,21 +41,21 @@ export default function RecipeEditForm(props) {
   };
 
   return (
-    <div>
-      <h1>Edit Recipe</h1>
+    <div className='container_sup2'>
+      <h1 id='Title'>Edit Recipe</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
+        <div className='container'>
+          <label><span className='lable'>Name</span></label>
           <input type="text" name="name" onChange={handleChange} value={recipe.name} />
         </div>
 
         <div>
-          <label>Step</label>
+          <label className='container'>  <span className='lable'>Step</span></label>
           <input type="text" name="step" onChange={handleChange} value={recipe.step} />
         </div>
 
-        <div>
-          <label>Ingredients</label>
+        <div className='container'>
+          <label >  <span className='lable'>Ingredients</span></label>
           <ul>
             {recipe.ingredients.map((ingredient, index) => (
               <li key={index}>
